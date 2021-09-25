@@ -27,6 +27,17 @@ cmake -DCMAKE_TOOLCHAIN_FILE=../toolchains/jetson.toolchain.cmake ../
 make -j4
 ./face_ncnn ../test_pic/2.jpg ../test_pic/4.jpg
 ```
+if you use GPU (jetson nano) uncommand these line:
+//include <gpu.h>
+//ncnn::create_gpu_instance();
+//retinaface->opt.use_vulkan_compute = 1;
+/*static void deinit(ncnn::Net* retinaface,ncnn::Net* mbv2facenet){ 
+    retinaface->clear();
+    ncnn::destroy_gpu_instance();
+    mbv2facenet->clear();
+}*/
+//ex.set_vulkan_compute(true);
+in face_ncnn.cpp
 
 - 测试图片放在test_pic
 
